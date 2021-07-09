@@ -1,42 +1,94 @@
-import { Grid, Paper, Avatar, TextField, Button, FormControl } from '@material-ui/core';
+import {Grid,Paper,Avatar,TextField,Button } from '@material-ui/core';
 import GroupRoundedIcon from '@material-ui/icons/GroupRounded';
+import { useState } from 'react';
+import Nav from './Navbar';
 
-const Signup = ({fName,lName,mobile,email,password,cpassword,onclickName,onclicklast,onclickmobile,onclickemail,onclickpassword,onclickcpassword,PostData}) => {
-
-	const paperstyle = { padding: 44, height: '70vh', width: 320, margin: '40px auto' }
+const Signup = () => {
+	const paperstyle = { padding: 34, height: '78vh', width: 320, margin: '20px auto' }
 	const avtarstyle = { backgroundColor: '#31316e' }
 	const btnstyle = { margin: '8px auto' }
 	const tfield = { marginBottom: '25px' }
-	const backgroundImg = { backgroundColor: 'blue' }
 
+	const [fName, setfName] = useState("")
+	const [lName, setlName] = useState("")
+	const [mobile, setMobile] = useState("")
+	const [email, setEmail] = useState("")
+	const [password, setPassword] = useState("")
+	const [cpassword, setCpassword] = useState("")
+
+
+	const onclickName = (e) => {
+		setfName(e.target.value)
+	}
+	const onclicklast = (e) => {
+		setlName(e.target.value)
+	}
+	const onclickmobile = (e) => {
+		setMobile(e.target.value)
+	}
+	const onclickemail = (e) => {
+		setEmail(e.target.value)
+	}
+	const onclickpassword = (e) => {
+		setPassword(e.target.value)
+	}
+	const onclickcpassword = (e) => {
+		setCpassword(e.target.value)
+	}
+	const Submithandler = (event) => {
+		event.preventDefault();
+		const Data = { fName }
+		console.log(Data);
+	};
+
+	const PostData = async (e) => {
+		e.preventDefault();
+		const res = await fetch("/register", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				fName, lName, mobile, email, password, cpassword
+			})
+		});
+		const data = await res.json();
+		console.log(data);
+		if(res.status===400||!data)
+		{
+			window.alert('invalid credential')
+		}
+		else{
+			window.alert('Registered Succesfully')
+		}
+	}
 
 	return (
-
-		<Grid>
+		<div className="container">
+			<Nav/>
 			<Paper elevation={10} style={paperstyle}>
 				<Grid align='center'>
 					<Avatar style={avtarstyle}>
 						<GroupRoundedIcon />
-					</Avatar>	
+					</Avatar>			
 				</Grid>
+				<form method="POST" onSubmit={Submithandler}>
+					<TextField value={fName} onChange={onclickName} label="First Name" placeholder="Enter your first name" style={tfield} fullWidth required></TextField>
 
-				<form method="POST">
-				<TextField value={fName} onChange={onclickName} label="First Name" placeholder="Enter your first name" style={tfield} fullWidth required></TextField>
+					<TextField value={lName} onChange={onclicklast} label="Last Name" placeholder="Enter your last name" style={tfield} fullWidth required></TextField>
 
-				<TextField value={lName} onChange={onclicklast} label="Last Name" placeholder="Enter your last name" style={tfield} fullWidth required></TextField>
+					<TextField value={mobile} onChange={onclickmobile} label="Contact No." placeholder="Enter your Mobile no." style={tfield} fullWidth required></TextField>
 
-				<TextField value={mobile} onChange={onclickmobile} label="Contact No." placeholder="Enter your Mobile no." style={tfield} fullWidth required></TextField>
+					<TextField value={email} onChange={onclickemail} label="Email" placeholder="Enter Email" style={tfield} fullWidth required></TextField>
 
-				<TextField value={email} onChange={onclickemail} label="Email" placeholder="Enter Email" style={tfield} fullWidth required></TextField>
+					<TextField value={password} onChange={onclickpassword} label="Password" placeholder="Enter password" style={tfield} type='password' fullWidth required></TextField>
 
-				<TextField value={password} onChange={onclickpassword} label="Password" placeholder="Enter password" style={tfield} type='password' fullWidth required></TextField>
+					<TextField value={cpassword} onChange={onclickcpassword} label=" Coinfirm Password" placeholder="Re-enter password" style={tfield} type='password' fullWidth required></TextField>
 
-				<TextField value={cpassword} onChange={onclickcpassword} label=" Coinfirm Password" placeholder="Re-enter password" style={tfield} type='password' fullWidth required></TextField>
-
-				<Button value="register" onClick={PostData} type="submit" color="primary" style={btnstyle} variant="contained" fullWidth>Sign Up</Button>
+					<Button value="register" onClick={PostData} type="submit" color="primary" style={btnstyle} variant="contained" fullWidth>Sign Up</Button>
 				</form>
 			</Paper>
-		</Grid>
+			</div>
 	)
 }
 export default Signup;

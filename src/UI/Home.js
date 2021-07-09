@@ -1,8 +1,11 @@
+import HomeNav from './HomeNav';
+
 const Home=()=>
 {
     return(
         <div>
-            <h1>welcome to home page</h1>
+            <HomeNav/>
         </div>
     )
 }
+export default Home;
