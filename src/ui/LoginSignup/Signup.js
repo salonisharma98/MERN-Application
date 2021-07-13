@@ -1,7 +1,6 @@
 import {Grid,Paper,Avatar,TextField,Button } from '@material-ui/core';
 import GroupRoundedIcon from '@material-ui/icons/GroupRounded';
 import { useState } from 'react';
-import Nav from './Navbar';
 
 const Signup = () => {
 	const paperstyle = { padding: 34, height: '78vh', width: 320, margin: '20px auto' }
@@ -9,13 +8,12 @@ const Signup = () => {
 	const btnstyle = { margin: '8px auto' }
 	const tfield = { marginBottom: '25px' }
 
-	const [fName, setfName] = useState("")
-	const [lName, setlName] = useState("")
-	const [mobile, setMobile] = useState("")
-	const [email, setEmail] = useState("")
-	const [password, setPassword] = useState("")
-	const [cpassword, setCpassword] = useState("")
-
+	const [fName, setfName] = useState([])
+	const [lName, setlName] = useState([])
+	const [mobile, setMobile] = useState([])
+	const [email, setEmail] = useState([])
+	const [password, setPassword] = useState([])
+	const [cpassword, setCpassword] = useState([])
 
 	const onclickName = (e) => {
 		setfName(e.target.value)
@@ -37,13 +35,18 @@ const Signup = () => {
 	}
 	const Submithandler = (event) => {
 		event.preventDefault();
-		const Data = { fName }
+		const Data = { fName,lName,mobile,email,password,cpassword }
 		console.log(Data);
+		setfName('');
+		setlName('');
+		setMobile('');
+		setEmail('');
+		setPassword('');
+		setCpassword('');
 	};
-
 	const PostData = async (e) => {
 		e.preventDefault();
-		const res = await fetch("/register", {
+		const res = await fetch("http://localhost:5000/register", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
@@ -58,14 +61,20 @@ const Signup = () => {
 		{
 			window.alert('invalid credential')
 		}
+		else if(password!==cpassword)
+		{
+			window.alert('Password and confirm password should be same');
+		}
+		else if(res.status===422)
+		{
+			window.alert('user already exist');
+		}
 		else{
 			window.alert('Registered Succesfully')
 		}
 	}
-
 	return (
 		<div className="container">
-			<Nav/>
 			<Paper elevation={10} style={paperstyle}>
 				<Grid align='center'>
 					<Avatar style={avtarstyle}>
