@@ -18,10 +18,7 @@ const useStyles = makeStyles((theme) => ({
    
     textAlign:"center",
   },
-  userData:{
-    padding:"10px"  ,
-    textAlign:"center",
-  },
+  
   profileImg:{
     textAlign:"center",
   },
@@ -35,29 +32,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const LoggedProfile = () => {
-  const [users,setUser]=useState([])
+const OtherUser = () => {
+  const [user,setUser]=useState([])
   const token=localStorage.getItem('jwt');
   const history=useHistory();
-
+	const id=useParams()
     useEffect(() => {
       if(token===null)
-    {  
-	   history.push('/');
-     
+    {
+			
+				history.push('/');
+		   
       window.alert("you must be signed in")
     }
     else{
-      fetch(`http://localhost:5000/current_user`,{
+      fetch(`http://localhost:5000/other_user/${id.id}`,{
         method: "GET",
         headers: {
           "Content-Type": "application/json",
           'Accept': 'application/json',
           "Authorization":"Bearer "+localStorage.getItem('jwt')
         },	
-      }).then(res=>res.json()).then(result=>{
-         console.log(result);
-       setUser(result)
+      }).then((res)=>{res.json()
+      console.log(res)}).then(data=>{
+         console.log('data',data);
+         setUser(data)
       })}
       },[])
 
@@ -65,7 +64,7 @@ const LoggedProfile = () => {
       const classes=useStyles();
   return (
     <div>
-      <Grid container className={classes.userData}>
+      {/* <Grid container className={classes.userData}>
         <Grid item xs={6} className={classes.profileImg}>
           <img src={Profile}/>
         </Grid>
@@ -99,13 +98,11 @@ const LoggedProfile = () => {
               <p>{users.email} </p>
             </Grid>
           </Grid>  
-          <Grid className={classes.userData}>
-            <Button className={classes.updateInfo}>Update information</Button>
-          </Grid>        
+               
         </Paper>
         </Grid>
-      </Grid>
+      </Grid> */}
     </div>   
   )
 }
-export default LoggedProfile;
+export default OtherUser;

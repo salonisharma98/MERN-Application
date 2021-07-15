@@ -50,9 +50,9 @@ const Login=()=>{
 		else{
 			
 			localStorage.setItem("jwt",data.token)
-			localStorage.setItem("id",JSON.stringify(data.id))
+			// localStorage.setItem("user",JSON.stringify(data.user))
 			const token=localStorage.getItem("jwt")
-			const id=localStorage.getItem("id")
+			const userinfo=localStorage.getItem("user")
 			window.alert('Login succesfully');
 
 			history.push('/Home');

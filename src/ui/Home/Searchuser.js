@@ -10,6 +10,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import {useHistory,Link} from 'react-router-dom';
+import OtherUser from './OtherUser';
 
 const useStyles = makeStyles({
   root: {
@@ -28,7 +29,7 @@ const useStyles = makeStyles({
     marginBottom: 12,
   },
   table: {
-    // maxWidth: 650,
+    padding:"10px",
 
   },
 });
@@ -38,35 +39,34 @@ const Searchuser = () => {
   const history=useHistory();
   const classes = useStyles();
   const [users, setUsersprofile] = useState([]);
-
-  const [searchusers, setSearch] = useState('')
+  
+  const [searchusers, setSearch] = useState([])
 
   const HandleClick = (event) => {
     setSearch(event.target.value);
   };
   const paperstyle = { padding: 20, width: 620, margin: '40px auto' }
-  const getUsers = async () => {
-    const response = await fetch('http://localhost:5000/register', {
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      }
-    });
-    setUsersprofile(await response.json());
-  }
-
+  
   useEffect(() => {
     if (token === null) {
-      window.alert("you must be signed in")
+     
       history.push('/')
+      window.alert("you must be signed in")
     }
     else {
-      getUsers();
+    fetch('http://localhost:5000/search_user',{
+      headers:{
+        "Authorization":"Bearer "+localStorage.getItem('jwt')
+      }
+    }).then(res=>res.json()).then(result=>{
+       console.log(result);
+       setUsersprofile(result);
+    })
     }
 
   }, []);
 
-
+  
   return (
     <div align="center">
       <Paper elevation={10} style={paperstyle}>
@@ -79,20 +79,14 @@ const Searchuser = () => {
               <Table className={classes.table} size="small" aria-label="a dense table">
                 <TableBody>
                   {
-                  users.filter(val=> {
-                    if (searchusers === "") {
-                      return val
-                    }
-                    else if (val.fName.toLowerCase().includes(searchusers.toLowerCase())) {
-                      return val
-                    }
-                  }).map((val) => (
-                    <TableRow key={val.id}>
-                      <Link to={`/Searchuser/${val.id}`}>
-                      <TableCell component="th" scope="row" >
-                        {val.fName} {val.lName}
-                      </TableCell>
+                  users.map((vals) => (
+                    <TableRow >                      
+                      <TableCell key={vals._id}>
+                      <Link to={`/Searchuser/${vals._id}`}> 
+                        {vals.fName} {vals.lName}
                       </Link>
+                      </TableCell>
+                     
                     </TableRow>
                   ))}
                 </TableBody>

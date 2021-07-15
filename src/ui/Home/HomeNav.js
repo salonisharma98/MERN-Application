@@ -22,7 +22,9 @@ const useStyles = makeStyles((theme) => ({
     
 },
 appbar:{
-    // backgroundColor:'grey'
+  backgroundColor: "transparent",
+  boxShadow: "4px 4px 4px 4px gainsboro",
+  padding:"8px"
 },
 appbarWrapper:{
     width:"80%",
@@ -30,11 +32,14 @@ appbarWrapper:{
 },
 
 appbartitle:{
-flexGrow:"1"
+  flexGrow:"1",
+  fontSize:"34px",
+  color:"#004279"
 },
-btnTitle:
-{
-  
+navbtn:{
+  marginLeft:"10px",
+  marginRight:"10px",
+  fontSize:"18px"
 }
 
 }));
@@ -51,32 +56,32 @@ const HomeNav=()=> {
   {
     history.push("/Home")
   }
+  const findPeople=()=>
+  {
+    history.push("/SearchUser")
+  }
+  const viewProfile=()=>
+  {
+    history.push("/LoggedProfile")
+  }
   return (
     <div className={classes.root}>
       <AppBar className={classes.appbar} elevation=
      {0} position="static">
         <Toolbar className={classes.appbarWrapper}>
-        <h2 className={classes.appbartitle}>Demo App</h2>   
-          <Typography>          
-          <Button onClick ={homepage}>Home</Button>       
+        <p className={classes.appbartitle}><b>Demo App</b></p>   
+        <Typography>          
+          <Button className={classes.navbtn} onClick ={homepage}>Home</Button>       
             </Typography>
             <Typography >
-            <Link to="/Searchuser" className={classes.btnTitle}>
-            <Button>Find People</Button>
-            </Link>
+            <Button onClick={findPeople} className={classes.navbtn}>Find People</Button>
             </Typography>
-          
-
-          <Typography>
-           
-            <Button onClick={logout}>Logout</Button>
-            
+          <Typography>          
+            <Button className={classes.navbtn}onClick={logout}>Logout</Button>           
           </Typography>        
-            <Link  to={`/LoggedProfile/:profileid`}>
             <Typography>
-            <AccountCircle />
+            <Button onClick={viewProfile} className={classes.navbtn}>View Profile</Button> 
             </Typography>
-            </Link>
           
         </Toolbar>
       </AppBar>
