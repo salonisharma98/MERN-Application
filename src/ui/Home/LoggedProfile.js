@@ -45,7 +45,7 @@ const LoggedProfile = () => {
     {  
 	   history.push('/');
      
-      window.alert("you must be signed in")
+      // window.alert("you must be signed in")
     }
     else{
       fetch(`http://localhost:5000/current_user`,{

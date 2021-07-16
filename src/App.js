@@ -7,26 +7,29 @@ import HomeNav from './ui/Home/HomeNav'
 import Searchuser from './ui/Home/Searchuser'
 import OtherUser from './ui/Home/OtherUser'
 import LoggedProfile from './ui/Home/LoggedProfile'
-import Footer from './ui/Home/Footer'
+
 import {
 	BrowserRouter as Router,
 	Switch,
 	Route
 } from "react-router-dom";
+
 function App() {
+	
 	return (
+		
 		<Router>
-			<HomeNav/>
-			<Switch>
-				<Route path="/" exact component={Login} />
+			<HomeNav/>			
+			<Switch>	
+			<Route path="/" exact component={Login} />
 				<Route path="/Signup" exact component={Signup} />
 				<Route path="/Home" exact component={Home} />
 				<Route path="/LoggedProfile" exact component={LoggedProfile} />	
 				<Route path="/Searchuser" exact component={Searchuser} />
 				<Route path="/Searchuser/:id" exact component={OtherUser} />
-			</Switch>
-			
+				</Switch>			
 		</Router>
+		
 	);
 }
 

@@ -51,7 +51,7 @@ const Searchuser = () => {
     if (token === null) {
      
       history.push('/')
-      window.alert("you must be signed in")
+      // window.alert("you must be signed in")
     }
     else {
     fetch('http://localhost:5000/search_user',{
@@ -81,9 +81,9 @@ const Searchuser = () => {
                   {
                   users.map((vals) => (
                     <TableRow >                      
-                      <TableCell key={vals._id}>
+                      <TableCell >
                       <Link to={`/Searchuser/${vals._id}`}> 
-                        {vals.fName} {vals.lName}
+                        {vals.fName} 
                       </Link>
                       </TableCell>
                      

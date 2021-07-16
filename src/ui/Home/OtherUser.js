@@ -32,39 +32,37 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const OtherUser = () => {
-  const [user,setUser]=useState([])
+const OtherUser = ({match}) => {
+  const [users,setUser]=useState([])
   const token=localStorage.getItem('jwt');
   const history=useHistory();
 	const id=useParams()
+   console.log(id.id)
     useEffect(() => {
       if(token===null)
-    {
-			
-				history.push('/');
-		   
-      window.alert("you must be signed in")
+    {			
+     // console.log('in if')
+				history.push('/');		   
+      //window.alert("you must be signed in")
     }
     else{
-      fetch(`http://localhost:5000/other_user/${id.id}`,{
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          'Accept': 'application/json',
-          "Authorization":"Bearer "+localStorage.getItem('jwt')
-        },	
-      }).then((res)=>{res.json()
-      console.log(res)}).then(data=>{
-         console.log('data',data);
-         setUser(data)
-      })}
-      },[])
+      //console.log('in else')
+      fetch(`http://localhost:5000/search_user/${id.id}`).then(res=>res.json().then(res=>{
+        console.log(res,'i am response')
+        setUser(res)
+      }).catch(error=>{
+        console.log(error,'i am error')
+      }))
+    }
+  })
 
   const paperstyle = { padding: 20, height: '55vh', width: 420,align:"center",margin:'40px auto' ,backgroundColor:"#004279"}
       const classes=useStyles();
+      console.log(users, 'i am user')
   return (
+
     <div>
-      {/* <Grid container className={classes.userData}>
+      <Grid container className={classes.userData}>
         <Grid item xs={6} className={classes.profileImg}>
           <img src={Profile}/>
         </Grid>
@@ -97,11 +95,10 @@ const OtherUser = () => {
             <Grid className={classes.detail} item xs={6}>
               <p>{users.email} </p>
             </Grid>
-          </Grid>  
-               
+          </Grid>                
         </Paper>
         </Grid>
-      </Grid> */}
+      </Grid> 
     </div>   
   )
 }

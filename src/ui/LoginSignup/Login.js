@@ -1,10 +1,11 @@
 import {Grid,Paper,Avatar,TextField,Button, Typography} from '@material-ui/core';
 import GroupRoundedIcon from '@material-ui/icons/GroupRounded';
-import {useState} from 'react'; 
+import {useState,useContext} from 'react'; 
 import {useHistory,Link} from 'react-router-dom';
 import Signup from './Signup';
 
 const Login=()=>{
+	
 	const[email,setEmail]=useState([]);
 
 	const[password,setPassword]=useState([]);
@@ -50,11 +51,10 @@ const Login=()=>{
 		else{
 			
 			localStorage.setItem("jwt",data.token)
-			// localStorage.setItem("user",JSON.stringify(data.user))
-			const token=localStorage.getItem("jwt")
-			const userinfo=localStorage.getItem("user")
+			localStorage.setItem("user",JSON.stringify(data.user))
+			// const token=localStorage.getItem("jwt")
+			// const userinfo=localStorage.getItem("user")
 			window.alert('Login succesfully');
-
 			history.push('/Home');
 		}
 	}
