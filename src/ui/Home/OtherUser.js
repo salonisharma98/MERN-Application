@@ -41,12 +41,9 @@ const OtherUser = ({match}) => {
     useEffect(() => {
       if(token===null)
     {			
-     // console.log('in if')
 				history.push('/');		   
-      //window.alert("you must be signed in")
     }
     else{
-      //console.log('in else')
       fetch(`http://localhost:5000/search_user/${id.id}`).then(res=>res.json().then(res=>{
         console.log(res,'i am response')
         setUser(res)
@@ -58,7 +55,7 @@ const OtherUser = ({match}) => {
 
   const paperstyle = { padding: 20, height: '55vh', width: 420,align:"center",margin:'40px auto' ,backgroundColor:"#004279"}
       const classes=useStyles();
-      console.log(users, 'i am user')
+    
   return (
 
     <div>

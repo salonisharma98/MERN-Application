@@ -8,8 +8,9 @@ const useStyles = makeStyles({
 	},
 	aboutPara:{
 		 textAlign:"justify",
-		fontSize:"20px",
-		marginTop:"20px",
+		fontSize:"18px",
+		// marginTop:"20px",
+		padding:"15px",
 	},
 	aboutText:{
 		textAlign:"center",
@@ -31,10 +32,10 @@ const Aboutus = () => {
 	return (
 		<div className={classes.AboutWrap}>
 			<Grid container>
-				<Grid item md={6} xs={6} className={classes.aboutPic}>
+				<Grid item md={6} xs={12} className={classes.aboutPic}>
 					<img src={banner} className={classes.mobile}/>
 				</Grid>
-				<Grid item md={6} xs={6} className={classes.aboutText}>
+				<Grid item md={6} xs={12} className={classes.aboutText}>
 					<p className={classes.aboutHeading}>About Us</p>
 					<p className={classes.aboutPara}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
 				</Grid>

@@ -6,15 +6,18 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import {Grid} from "@material-ui/core"
+import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles({
   root: {
     textAlign:"center",
-    width:"220px",
     marginTop:"30px",
     marginBottom:"30px",
-    marginLeft:"30px",
-    marginRight:"30px"
+    alignItems:'center',
+    justify:'center'  ,
+    marginLeft:"20px",
+    marginRight:"20px"
+   
   },
   
   title: {
@@ -25,7 +28,10 @@ const useStyles = makeStyles({
       textAlign:"center",     
   },
   wrapcontainer:{
-        textAlign:"center",   
+       
+        alignItems:'center',
+    justify:'center'  ,
+       
   },
   box:{
       alignItems:"center",
@@ -43,9 +49,9 @@ const Features=()=>{
   const bull = <span className={classes.bullet}>•</span>;
 
   return (
-      <div className="container" >
+      <Container>
           <Grid container className={classes.wrapcontainer} >
-          <Grid item md={4} xs={4} className={classes.features}>
+          <Grid item md={4} xs={12} className={classes.features}>
           <Card className={classes.root} elevation={6}>
             <CardContent> 
              <Typography className={classes.title} color="textSecondary" gutterBottom>
@@ -54,7 +60,7 @@ const Features=()=>{
             </CardContent>
              </Card>
            </Grid>
-           <Grid item md={4} xs={4} className={classes.features}>
+           <Grid item md={4} xs={12} className={classes.features}>
           <Card className={classes.root} elevation={6}>
             <CardContent> 
              <Typography className={classes.title} color="textSecondary" gutterBottom>
@@ -63,7 +69,7 @@ const Features=()=>{
             </CardContent>
              </Card>
            </Grid>
-           <Grid item md={4} xs={4} className={classes.features}>
+           <Grid item md={4} xs={12} className={classes.features}>
           <Card className={classes.root} elevation={6}>
             <CardContent> 
              <Typography className={classes.title} color="textSecondary" gutterBottom>
@@ -74,7 +80,7 @@ const Features=()=>{
            </Grid> 
            </Grid>
            <Grid container className={classes.wrapcontainer} >
-          <Grid item md={4} xs={4} className={classes.features}>
+          <Grid item md={4} xs={12} className={classes.features}>
           <Card className={classes.root} elevation={6}>
             <CardContent> 
              <Typography className={classes.title} color="textSecondary" gutterBottom>
@@ -83,7 +89,7 @@ const Features=()=>{
             </CardContent>
              </Card>
            </Grid>
-           <Grid item md={4} xs={4} className={classes.features}>
+           <Grid item md={4} xs={12} className={classes.features}>
           <Card className={classes.root} elevation={6}>
             <CardContent> 
              <Typography className={classes.title} color="textSecondary" gutterBottom>
@@ -92,7 +98,7 @@ const Features=()=>{
             </CardContent>
              </Card>
            </Grid>
-           <Grid item md={4} xs={4} className={classes.features}>
+           <Grid item md={4} xs={12} className={classes.features}>
           <Card className={classes.root} elevation={6}>
             <CardContent> 
              <Typography className={classes.title} color="textSecondary" gutterBottom>
@@ -102,7 +108,7 @@ const Features=()=>{
              </Card>
            </Grid> 
            </Grid>       
-      </div>   
+      </Container>   
   );
 }
 export default Features;

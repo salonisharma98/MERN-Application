@@ -1,12 +1,13 @@
 import { useState, useEffect, } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import women from '../Images/women.jpg';
-import { Grid, Paper } from '@material-ui/core'
+import { Grid, Paper} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 import Features from './Features';
 import Aboutus from './Aboutus';
 import Footer from './Footer';
+import Alert from '@material-ui/lab/Alert';
 const useStyles = makeStyles((theme) => ({
 	bgcolor: {
 		backgroundColor: "#d3d3d3ad",
@@ -34,6 +35,8 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor: "black",
 		marginLeft: "10px",
 		marginRight: "10px",
+		// marginTop:"15px",
+		marginBottom:"20px",
 		'&:hover': {
 			backgroundColor: "black"
 		}
@@ -45,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	btnTitle: {
 		textAlign: "center",
+		
 	}
 }));
 
@@ -53,25 +57,22 @@ const Home = () => {
 	const classes = useStyles();
 	const history = useHistory();
 	const token = localStorage.getItem('jwt')
-
-	const LoggedData = async (e) => {
-		const res = await fetch(`http://localhost:5000/Home`, {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json",
-				'Accept': 'application/json',
-				"Authorization": "Bearer " + localStorage.getItem('jwt')
-			},
-		});
-		const data = await res.json();
-		console.log(data);
-	}
+	// const LoggedData = async (e) => {
+	// 	const res = await fetch(`http://localhost:5000/Home`, {
+	// 		method: "GET",
+	// 		headers: {
+	// 			"Content-Type": "application/json",
+	// 			'Accept': 'application/json',
+	// 			"Authorization": "Bearer " + localStorage.getItem('jwt')
+	// 		},
+	// 	});
+	// 	const data = await res.json();
+	// 	console.log(data);
+	// }
 	useEffect(() => {
 		if (token === null) {
-			history.push('/')
-		}
-		else {
-			LoggedData();
+			history.push('/');
+		
 		}
 	}, []);
 	const imagess = {
@@ -83,10 +84,10 @@ const Home = () => {
 	return (
 		<div>
 			<Grid container className={classes.bgcolor} >
-				<Grid item xs={6}>
+				<Grid item xs={12} md={6}>
 					<img src={women} style={imagess} />
 				</Grid>
-				<Grid item xs={6}>
+				<Grid item xs={12} md={6}>
 					<Grid container className={classes.appTitle}>
 						<Grid item xs={12}>
 							<p className={classes.para}>Download the <span className={classes.appcolor}><b>App Now!!!</b></span>

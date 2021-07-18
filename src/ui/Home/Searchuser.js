@@ -36,8 +36,11 @@ const useStyles = makeStyles({
 
 const Searchuser = () => {
   const token=localStorage.getItem('jwt');
+
   const history=useHistory();
+
   const classes = useStyles();
+
   const [users, setUsersprofile] = useState([]);
   
   const [searchusers, setSearch] = useState([])
@@ -51,7 +54,6 @@ const Searchuser = () => {
     if (token === null) {
      
       history.push('/')
-      // window.alert("you must be signed in")
     }
     else {
     fetch('http://localhost:5000/search_user',{
@@ -65,8 +67,6 @@ const Searchuser = () => {
     }
 
   }, []);
-
-  
   return (
     <div align="center">
       <Paper elevation={10} style={paperstyle}>
@@ -80,13 +80,14 @@ const Searchuser = () => {
                 <TableBody>
                   {
                   users.map((vals) => (
-                    <TableRow >                      
+                    <TableRow > 
+                                        
                       <TableCell >
-                      <Link to={`/Searchuser/${vals._id}`}> 
-                        {vals.fName} 
-                      </Link>
-                      </TableCell>
-                     
+                      <Link to={`/Searchuser/${vals._id}`}>                      
+                        {vals.email}
+                        </Link>                      
+                      </TableCell>  
+                                     
                     </TableRow>
                   ))}
                 </TableBody>

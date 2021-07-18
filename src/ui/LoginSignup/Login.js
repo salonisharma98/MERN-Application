@@ -1,7 +1,7 @@
 import {Grid,Paper,Avatar,TextField,Button, Typography} from '@material-ui/core';
 import GroupRoundedIcon from '@material-ui/icons/GroupRounded';
 import {useState,useContext} from 'react'; 
-import {useHistory,Link} from 'react-router-dom';
+import {useHistory,Link,useParams} from 'react-router-dom';
 import Signup from './Signup';
 
 const Login=()=>{
@@ -27,10 +27,10 @@ const Login=()=>{
 	{
 		setPassword(e.target.value);
 	}	
-
+	const id=useParams()
 	const LoggedData = async (e) => {
 		e.preventDefault();
-		const res = await fetch("http://localhost:5000/signin", {
+		const res = await fetch(`http://localhost:5000/signin`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -49,13 +49,11 @@ const Login=()=>{
 			window.alert('invalid credentials');
 		}	 
 		else{
-			
+			console.log(data.userLogin,'i am logged in')
 			localStorage.setItem("jwt",data.token)
 			localStorage.setItem("user",JSON.stringify(data.user))
-			// const token=localStorage.getItem("jwt")
-			// const userinfo=localStorage.getItem("user")
 			window.alert('Login succesfully');
-			history.push('/Home');
+			history.push(`/Home`);
 		}
 	}
 	return(

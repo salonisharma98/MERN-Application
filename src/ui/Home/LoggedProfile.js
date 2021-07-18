@@ -98,9 +98,6 @@ const LoggedProfile = () => {
             <Grid className={classes.detail} item xs={6}>
               <p>{users.email} </p>
             </Grid>
-          </Grid>  
-          <Grid className={classes.userData}>
-            <Button className={classes.updateInfo}>Update information</Button>
           </Grid>        
         </Paper>
         </Grid>

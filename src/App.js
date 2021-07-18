@@ -2,11 +2,11 @@ import React from 'react';
 import Login from './ui/LoginSignup/Login';
 import Signup from './ui/LoginSignup/Signup';
 import Home from './ui/Home/HomePage';
-import Profile from './ui/Home/Profile'
 import HomeNav from './ui/Home/HomeNav'
 import Searchuser from './ui/Home/Searchuser'
 import OtherUser from './ui/Home/OtherUser'
 import LoggedProfile from './ui/Home/LoggedProfile'
+import LoggedHistory from './ui/Home/LoggedHistory'
 
 import {
 	BrowserRouter as Router,
@@ -27,8 +27,10 @@ function App() {
 				<Route path="/LoggedProfile" exact component={LoggedProfile} />	
 				<Route path="/Searchuser" exact component={Searchuser} />
 				<Route path="/Searchuser/:id" exact component={OtherUser} />
+				<Route path="/LoggedHistory" exact component={LoggedHistory}></Route>
 				</Switch>			
 		</Router>
+	
 		
 	);
 }
