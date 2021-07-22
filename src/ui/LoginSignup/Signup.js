@@ -1,6 +1,7 @@
 import {Grid,Paper,Avatar,TextField,Button } from '@material-ui/core';
 import GroupRoundedIcon from '@material-ui/icons/GroupRounded';
 import { useState } from 'react';
+import Nav from './Navbar';
 
 const Signup = () => {
 	const paperstyle = { padding: 34, height: '78vh', width: 320, margin: '20px auto' }
@@ -75,6 +76,7 @@ const Signup = () => {
 	}
 	return (
 		<div className="container">
+			<Nav/>
 			<Paper elevation={10} style={paperstyle}>
 				<Grid align='center'>
 					<Avatar style={avtarstyle}>

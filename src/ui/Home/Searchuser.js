@@ -11,6 +11,7 @@ import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import {useHistory,Link} from 'react-router-dom';
 import OtherUser from './OtherUser';
+import HomeNav from './HomeNav';
 
 const useStyles = makeStyles({
   root: {
@@ -69,6 +70,7 @@ const Searchuser = () => {
   }, []);
   return (
     <div align="center">
+      <HomeNav/>
       <Paper elevation={10} style={paperstyle}>
         <Card className={classes.root}>
           <form>

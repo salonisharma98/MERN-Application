@@ -18,8 +18,7 @@ function App() {
 	
 	return (
 		
-		<Router>
-			<HomeNav/>			
+		<Router>		
 			<Switch>	
 			<Route path="/" exact component={Login} />
 				<Route path="/Signup" exact component={Signup} />

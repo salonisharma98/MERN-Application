@@ -67,29 +67,51 @@ const HomeNav = () => {
   const logshistory = () => {
     history.push("/LoggedHistory")
   }
+  
 
-  const renderlist = () => {
-    if (token) {
-      return (
-        <div>
-          <Button className={classes.navbtn} onClick={homepage}>Home</Button>
-          <Button onClick={findPeople} className={classes.navbtn}>Find People</Button>
-          <Button onClick={viewProfile} className={classes.navbtn}>View Profile</Button>
-          <Button className={classes.navbtn} onClick={Logout}>Logout</Button>
-          <Button className={classes.navbtn} onClick={logshistory}>Logout History</Button>
-        </div>
-      )
-    }
-  }
+  // const renderlist = () => {
+  //   if (token) {
+  //     return (
+  //       <div>
+  //         <Button className={classes.navbtn} onClick={homepage}>Home</Button>
+  //         <Button onClick={findPeople} className={classes.navbtn}>Find People</Button>
+  //         <Button onClick={viewProfile} className={classes.navbtn}>View Profile</Button>
+  //         <Button className={classes.navbtn} onClick={Logout}>Logout</Button>
+  //         <Button className={classes.navbtn} onClick={logshistory}>Logout History</Button>
+  //       </div>
+  //     )
+  //   }
+  //   else{
+  //     <h1 className={classes.appbartitle}><b>Demo App</b></h1>
+  //   }
+  // }
+  //  const[usernav,setNave]=useState(false)
+  // useEffect(()=>{
+  //  const tokens=localStorage.getItem('jwt')
+  //   if(tokens)
+  //   {
+  //   setNave(true)
+  //   }
+  //   else{
+  //    setNave(false)
+  //   }
+  // })
   return (
 
     <div className={classes.root}>
       <AppBar className={classes.appbar} elevation=
         {0} position="static">
         <Toolbar className={classes.appbarWrapper}>
-          <h1 className={classes.appbartitle}><b>Demo App</b></h1>
-          {renderlist()}
-        </Toolbar>
+       
+        <div>
+        <h1 className={classes.appbartitle}><b>Demo App</b></h1>
+         <Button className={classes.navbtn} onClick={homepage}>Home</Button>
+          <Button onClick={findPeople} className={classes.navbtn}>Find People</Button>
+          <Button onClick={viewProfile} className={classes.navbtn}>View Profile</Button>
+          <Button className={classes.navbtn} onClick={Logout}>Logout</Button>
+          <Button className={classes.navbtn} onClick={logshistory}>Logout History</Button>
+          </div>
+          </Toolbar>
       </AppBar>
     </div>
   );

@@ -10,6 +10,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import {useHistory,Link} from 'react-router-dom';
+import HomeNav from './HomeNav';
 
 const useStyles = makeStyles({
   root: {
@@ -56,9 +57,9 @@ const LoggedHistory = () => {
 		});
 		const data = await res.json();
 		console.log(data," i am data");
-  const result=await data.logoutHistory
-  console.log(result,"i am result")
-  setUsersHistory(result);
+    const result=await data.logoutHistory
+    console.log(result,"i am result")
+    setUsersHistory(result);
 	}
     useEffect(() => {
       if(token===null)
@@ -82,6 +83,7 @@ const LoggedHistory = () => {
   
   return (
     <div align="center">
+      <HomeNav/>
       <Paper elevation={10} style={paperstyle}>
         <Card className={classes.root}>
           <CardContent>
@@ -94,10 +96,10 @@ const LoggedHistory = () => {
                                         
                       <TableCell  >                 
                      
-                      {
-                          users.map((val)=>{
+                      
+                         
                               <p>{vals.date}</p>
-                          })}      
+                            
                            </TableCell>       
                     </TableRow>
                   ))}

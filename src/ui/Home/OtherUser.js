@@ -4,6 +4,7 @@ import {useParams} from 'react-router-dom';
 import {Grid,Paper, Typography,Divider, Button} from '@material-ui/core'
 import Profile from '../Images/profile.jpg'
 import { makeStyles } from '@material-ui/core/styles';
+import HomeNav from './HomeNav';
 
 const useStyles = makeStyles((theme) => ({
   profileHeading:{
@@ -59,6 +60,7 @@ const OtherUser = ({match}) => {
   return (
 
     <div>
+      <HomeNav/>
       <Grid container className={classes.userData}>
         <Grid item xs={6} className={classes.profileImg}>
           <img src={Profile}/>

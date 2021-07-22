@@ -3,6 +3,7 @@ import GroupRoundedIcon from '@material-ui/icons/GroupRounded';
 import {useState,useContext} from 'react'; 
 import {useHistory,Link,useParams} from 'react-router-dom';
 import Signup from './Signup';
+import Nav from './Navbar'
 
 const Login=()=>{
 	
@@ -29,7 +30,7 @@ const Login=()=>{
 	}	
 	const id=useParams()
 	const LoggedData = async (e) => {
-		e.preventDefault();
+		 e.preventDefault();
 		const res = await fetch(`http://localhost:5000/signin`, {
 			method: "POST",
 			headers: {
@@ -57,7 +58,8 @@ const Login=()=>{
 		}
 	}
 	return(
-		<div className='container'>
+		<div>
+			<Nav/>
 		<Grid align="center">
 		<Paper elevation={10} style={paperstyle}>
 				<Grid align='center'>

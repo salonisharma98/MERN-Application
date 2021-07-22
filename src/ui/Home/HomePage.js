@@ -8,6 +8,7 @@ import Features from './Features';
 import Aboutus from './Aboutus';
 import Footer from './Footer';
 import Alert from '@material-ui/lab/Alert';
+import HomeNav from './HomeNav';
 const useStyles = makeStyles((theme) => ({
 	bgcolor: {
 		backgroundColor: "#d3d3d3ad",
@@ -83,6 +84,7 @@ const Home = () => {
 	const paperstyle = { height: '88vh', }
 	return (
 		<div>
+			<HomeNav/>
 			<Grid container className={classes.bgcolor} >
 				<Grid item xs={12} md={6}>
 					<img src={women} style={imagess} />
